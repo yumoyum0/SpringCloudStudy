@@ -14,7 +14,8 @@ import javax.annotation.Resource;
  **/
 @RestController
 public class OrderController {
-    public static final String PAYMENT_URL = "http://localhost:8001";
+//    public static final String PAYMENT_URL = "http://localhost:8001";
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
     @Resource
     private RestTemplate restTemplate;
 
@@ -27,4 +28,8 @@ public class OrderController {
         return restTemplate.getForObject(PAYMENT_URL+"/payment/getPaymentById/"+id, Result.class);
     }
 
+    @GetMapping("/consumer/ping")
+    public String ping(){
+        return restTemplate.getForObject(PAYMENT_URL+"/payment/ping", String.class);
+    }
 }
